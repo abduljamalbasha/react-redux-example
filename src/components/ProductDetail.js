@@ -22,14 +22,13 @@ const fetchProductDetail = async () =>{
 
 useEffect(()=>{
     if(productId && productId !== "") fetchProductDetail()
-  
     return () =>{
         dispatch(removeSelectedProduct())
     }
 },[productId])
 
 console.log("product detila:",product)
-const {id, title, image, price, category, description}=  product
+const { title, image, price, category, description}=  product
 return(
 
     <div className="ui grid container">
