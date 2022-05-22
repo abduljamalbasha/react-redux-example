@@ -11,23 +11,24 @@ const product = useSelector((state) => state.product)
 const {productId} = useParams()
 console.log("prodcutId,", productId)
 const dispatch = useDispatch()
-const fetchProductDetail = async () =>{
-    const response = await axios
-    .get(`https://fakestoreapi.com/products/${productId}`)
-    .catch(err =>{
-         console.log("error:",err)
-    })
-    dispatch(selectedProduct(response.data))
-}   
+
 
 useEffect(()=>{
+    const fetchProductDetail = async () =>{
+        const response = await axios
+        .get(`https://fakestoreapi.com/products/${productId}`)
+        .catch(err =>{
+             console.log("error:",err)
+        })
+        dispatch(selectedProduct(response.data))
+    }   
+    
     if(productId && productId !== "") fetchProductDetail()
     return () =>{
         dispatch(removeSelectedProduct())
     }
 },[productId])
 
-console.log("product detila:",product)
 const { title, image, price, category, description}=  product
 return(
 
